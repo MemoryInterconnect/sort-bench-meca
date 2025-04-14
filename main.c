@@ -88,21 +88,21 @@ int main(int argc, char *argv[]) {
         switch (choice) {
             case 1:
 		if( i == 0 ) 
-			printf("insertion_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+			printf("insertion_sort: size=%.1f kB array_type=%d runs=%d use_meca=%d\n", ((float)size)/256, flag, numRun, use_mmap);
 		printf("\rrun = %d/%d", i+1, numRun);
 		fflush(stdout);
                 insertion_sort(array, size, &numComparisons, &tempo);
                 break;
             case 2:
 		if( i == 0 ) 
-			printf("merge_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+			printf("merge_sort: size=%.1f kB array_type=%d runs=%d use_meca=%d\n", ((float)size)/256, flag, numRun, use_mmap);
 		printf("\rrun = %d/%d", i+1, numRun);
 		fflush(stdout);
                 merge_sort(array, size, &numComparisons, &tempo);
                 break;
             case 3:
 		if( i == 0 ) 
-			printf("quick_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+			printf("quick_sort: size=%.1f kB array_type=%d runs=%d use_meca=%d\n", ((float)size)/256, flag, numRun, use_mmap);
 		printf("\rrun = %d/%d", i+1, numRun);
 		fflush(stdout);
                 quick_sort(array, size, &numComparisons, &tempo);
@@ -117,14 +117,14 @@ int main(int argc, char *argv[]) {
 */
             case 5:
 		if( i == 0 ) 
-			printf("bucket_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+			printf("bucket_sort: size=%.1f kB array_type=%d runs=%d use_meca=%d\n", ((float)size)/256, flag, numRun, use_mmap);
 		printf("\rrun = %d/%d", i+1, numRun);
 		fflush(stdout);
                 bucket_sort(array, size, &numComparisons, &tempo);
                 break;
             case 6:
 		if( i == 0 ) 
-			printf("bucket_sort_pthreads: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+			printf("bucket_sort_pthreads: size=%.1f kB array_type=%d runs=%d use_meca=%d\n", ((float)size)/256, flag, numRun, use_mmap);
 		printf("\rrun = %d/%d", i+1, numRun);
 		fflush(stdout);
                 bucket_sort_pthreads(array, size, &numComparisons, &tempo, num_threads);
