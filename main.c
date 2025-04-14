@@ -14,7 +14,7 @@
 
 void print_usage(const char *prog_name) {
     printf("Usage: %s <algorithm> <size> <array_type> <runs> <use_mmap> [threads]\n", prog_name);
-    printf("  <algorithm>   : 1=insertion, 2=merge, 3=quick, 4=quick_opt, 5=bucket, 6=bucket_pthreads\n");
+    printf("  <algorithm>   : 1=insertion, 2=merge, 3=quick, 5=bucket, 6=bucket_pthreads\n");
     printf("  <size>        : size of the array\n");
     printf("  <array_type>  : 1=random, 2=sorted, 3=reverse, 4=duplicates\n");
     printf("  <runs>        : number of runs to average results\n");
@@ -87,21 +87,46 @@ int main(int argc, char *argv[]) {
 
         switch (choice) {
             case 1:
+		if( i == 0 ) 
+			printf("insertion_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+		printf("\rrun = %d/%d", i+1, numRun);
+		fflush(stdout);
                 insertion_sort(array, size, &numComparisons, &tempo);
                 break;
             case 2:
+		if( i == 0 ) 
+			printf("merge_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+		printf("\rrun = %d/%d", i+1, numRun);
+		fflush(stdout);
                 merge_sort(array, size, &numComparisons, &tempo);
                 break;
             case 3:
+		if( i == 0 ) 
+			printf("quick_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+		printf("\rrun = %d/%d", i+1, numRun);
+		fflush(stdout);
                 quick_sort(array, size, &numComparisons, &tempo);
                 break;
-            case 4:
+/*            case 4:
+		if( i == 0 ) 
+			printf("quick_sort_optimized: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+		printf("\rrun = %d/%d", i+1, numRun);
+		fflush(stdout);
                 quick_sort_optimized(array, size, &numComparisons, &tempo);
                 break;
+*/
             case 5:
+		if( i == 0 ) 
+			printf("bucket_sort: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+		printf("\rrun = %d/%d", i+1, numRun);
+		fflush(stdout);
                 bucket_sort(array, size, &numComparisons, &tempo);
                 break;
             case 6:
+		if( i == 0 ) 
+			printf("bucket_sort_pthreads: size=%d kB array_type=%d runs=%d use_meca=%d\n", size>>8, flag, numRun, use_mmap);
+		printf("\rrun = %d/%d", i+1, numRun);
+		fflush(stdout);
                 bucket_sort_pthreads(array, size, &numComparisons, &tempo, num_threads);
                 break;
             default:
@@ -121,6 +146,10 @@ int main(int argc, char *argv[]) {
         time_data[i] = transfer_time(tempo);
         numComparisons = 0;
     }
+
+    printf("\r");
+
+    check_sorted(array, size);
 
     calculate_confidence(comparison_data, time_data, numRun, &compare, &time, &meanTime, &meanCompare);
     print_result(compare, time, meanTime, meanCompare);

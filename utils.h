@@ -13,5 +13,6 @@ void calculate_confidence(const double *comparisons, const float *times, int cou
                           unsigned int *compare_out, unsigned int *time_out,
                           double *mean_time, float *mean_comparison);
 void print_result(unsigned int compare, unsigned int time, float mean_time, double mean_comparison);
+int check_sorted(const int *arr, int size);
 
 #endif

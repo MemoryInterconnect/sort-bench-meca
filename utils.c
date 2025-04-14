@@ -20,6 +20,22 @@ void populate_array_random(int *arr, int size, int flag) {
     }
 }
 
+int check_sorted(const int *arr, int size) {
+    int i;
+    int temp = 0;
+
+    for(i=0; i<size; i++) {
+	    if (temp > arr[i] ) {
+		    printf("Not sorted! prev_max=%d > arr[%d]=%d\n", temp, i, arr[i]);
+		    return -1;
+	    }
+
+	    if (temp < arr[i]) temp = arr[i];
+    }
+
+    return 0;
+}
+
 void print_array(const int *arr, int size) {
     for (int i = 0; i < size && i < 20; i++) {
         printf("%d\t", arr[i]);
@@ -67,7 +83,9 @@ void calculate_confidence(const double *comparisons, const float *times, int cou
 }
 
 void print_result(unsigned int compare, unsigned int time, float mean_time, double mean_comparison) {
-    printf("The mean value of time : %f\n", mean_time);
-    printf("The mean value of comparisons: %f\n", mean_comparison);
+//    printf("The mean value of time : %f\n", mean_time);
+//    printf("The mean value of comparisons: %.2f\n", mean_comparison);
+    printf("avg. = %f sec.\n", mean_time);
+    printf("avg num of comparisons: %.2f\n", mean_comparison);
 }
 

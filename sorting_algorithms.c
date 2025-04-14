@@ -104,7 +104,7 @@ static int partition_optimized(int *arr, int low, int high, unsigned int *numCom
     int pivot = median_of_three(arr, low, high, numComparisons);
     int i = low + 1;
     int j = high;
-    while (i <= j) {
+    while (i < j) {
         while (i <= high && arr[i] < pivot) { i++; (*numComparisons)++; }
         while (j >= low + 1 && arr[j] > pivot) { j--; (*numComparisons)++; }
         if (i < j) { exchange(&arr[i], &arr[j]); i++; j--; }
@@ -114,11 +114,13 @@ static int partition_optimized(int *arr, int low, int high, unsigned int *numCom
 }
 
 static void quick_sort_optimized_recursive(int *arr, int low, int high, unsigned int *numComparisons) {
+    int i, j, key, pivotIndex;
+
     while (low < high) {
         if (high - low <= 10) {
-            for (int i = low + 1; i <= high; i++) {
-                int key = arr[i];
-                int j = i - 1;
+            for (i = low + 1; i <= high; i++) {
+                key = arr[i];
+                j = i - 1;
                 while (j >= low && arr[j] > key) {
                     arr[j + 1] = arr[j];
                     j--;
@@ -129,7 +131,7 @@ static void quick_sort_optimized_recursive(int *arr, int low, int high, unsigned
             }
             break;
         }
-        int pivotIndex = partition_optimized(arr, low, high, numComparisons);
+        pivotIndex = partition_optimized(arr, low, high, numComparisons);
         quick_sort_optimized_recursive(arr, low, pivotIndex - 1, numComparisons);
         low = pivotIndex + 1;
     }
