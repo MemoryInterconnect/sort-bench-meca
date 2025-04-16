@@ -9,7 +9,8 @@
 #include "sorting_algorithms.h"
 #include "utils.h"
 
-#define MMAP_OFFSET 0x200000000
+//#define MMAP_OFFSET 0x200000000
+#define MMAP_OFFSET 0x100000000
 #define MMAP_DEVICE "/dev/mem"
 
 void print_usage(const char *prog_name) {
